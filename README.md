@@ -48,7 +48,6 @@ Each component of the system was designed and tested **in isolation** before bei
 
 ### Equity Curve
 
-![Equity Curve 2020–2025](equity_curve.png)
 
 ### Equity & Drawdown
 
@@ -69,7 +68,6 @@ Maximum drawdown of 13.6R against +225R generated equals approximately **6% peak
 | 2024 | +34.6R | ✅ Profitable |
 | 2025 | +65.2R | ✅ Profitable |
 
-![Annual Performance](yearly_performance.png)
 
 ### Monthly Performance Heatmap
 
@@ -111,9 +109,7 @@ Key risk principles:
 
 ## Files in This Repository
 
-- `equity_curve.png` — Trade-by-trade equity curve
 - `equity_and_drawdown.png` — Equity curve with drawdown subplot
-- `yearly_performance.png` — Annual R generated breakdown
 - `monthly_heatmap.png` — Monthly performance across 6 years
 - `r_distribution.png` — Trade outcome distribution
 - `US30_Trade_Log.xlsx` — Sanitized trade log (697 trades, direction, outcome, R result, cumulative)
