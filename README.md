@@ -19,14 +19,9 @@ The strategy was developed and refined over 6 years of out-of-sample testing and
 Each component of the system was designed and tested **in isolation** before being integrated into the final ruleset. A filter was retained only if it demonstrated a statistically positive contribution to overall performance.
 
 **Core design principles:**
-- Pattern-based entry logic rooted in recurring price-action structures
+- Pattern-based entry logic rooted in recurring market structures
 - Asymmetric risk/reward: **Long trades target 3.4R, Short trades target 2R**
 - Operational filters applied to reduce noise and exposure to low-edge conditions
-
-**Filters in use:**
-- Exclusion of specific weekdays with no statistical edge
-- Filtering of high-impact macroeconomic events
-- Structural market-condition filters
 
 **Validation approach:**
 - Each filter backtested standalone
@@ -35,7 +30,7 @@ Each component of the system was designed and tested **in isolation** before bei
 
 ---
 
-## Performance (2020–2025)
+## Headline Performance (2020–2025)
 
 | Metric | Value |
 |---|---|
@@ -45,15 +40,52 @@ Each component of the system was designed and tested **in isolation** before bei
 | Total R Generated | **+225.2R** |
 | Expectancy per Trade | **+0.323R** |
 | Profit Factor | **1.5** |
-| Win Rate | 36% |
-| Total Trades | 768 |
+| Win Rate | 35.9% |
+| Total Trades | 697 |
 | Max Drawdown | 13.6R |
 | Max Losing Streak | 12 consecutive SL |
-| Profitable Years | **6/6** |
+| **Profitable Years** | **6 / 6** |
 
 ### Equity Curve
 
 ![Equity Curve 2020–2025](equity_curve.png)
+
+### Equity & Drawdown
+
+![Equity & Drawdown](equity_and_drawdown.png)
+
+Maximum drawdown of 13.6R against +225R generated equals approximately **6% peak-to-trough exposure** on total returns — a result of the asymmetric R:R structure combined with strict per-trade risk capping.
+
+---
+
+## Annual Performance Breakdown
+
+| Year | Result | Status |
+|---|---|---|
+| 2020 | +14.6R | ✅ Profitable |
+| 2021 | +40.0R | ✅ Profitable |
+| 2022 | +34.4R | ✅ Profitable |
+| 2023 | +39.2R | ✅ Profitable |
+| 2024 | +34.6R | ✅ Profitable |
+| 2025 | +65.2R | ✅ Profitable |
+
+![Annual Performance](yearly_performance.png)
+
+### Monthly Performance Heatmap
+
+![Monthly Heatmap](monthly_heatmap.png)
+
+Across 72 months: **48 positive (67%)**, 24 negative. Maximum monthly gain +17.0R (Jun 2023). Maximum monthly loss -9.0R (Feb 2024). The strategy delivered positive contribution in every calendar year despite varied market regimes.
+
+---
+
+## Trade Outcome Distribution
+
+The asymmetric R:R structure is visible directly in the outcome distribution: most trades resolve to either +3.4R (Long TP), +2R (Short TP), or -1R (SL).
+
+![R Distribution](r_distribution.png)
+
+This is by design: the system accepts a sub-50% win rate in exchange for high reward-to-risk ratios on winners, producing positive expectancy through asymmetry rather than win frequency.
 
 ---
 
@@ -63,17 +95,28 @@ Risk is managed through an **R-multiple framework**: each trade risks a fixed un
 
 Key risk principles:
 - Fixed pre-defined risk per trade (1R)
-- Asymmetric reward structure to maintain positive expectancy at 36% win rate
-- Hard cap on consecutive losing streaks observed but not artificially limited (12 SL max in 6 years)
+- Asymmetric reward structure to maintain positive expectancy at sub-50% win rate
 - Drawdown monitored as multiple of average R, not as % of equity
+- Max losing streak (12 SL) absorbed in 6 years with full equity recovery
 
 ---
 
 ## Tools & Platforms
 
 - **Backtesting & analysis:** TradingView, Excel
-- **Forward testing & execution:** MetaTrader 5, cTrader
-- **Data:** Historical intraday US30 data
+- **Forward testing & live execution:** MetaTrader 5, cTrader
+- **Data:** Historical and live intraday US30 data
+
+---
+
+## Files in This Repository
+
+- `equity_curve.png` — Trade-by-trade equity curve
+- `equity_and_drawdown.png` — Equity curve with drawdown subplot
+- `yearly_performance.png` — Annual R generated breakdown
+- `monthly_heatmap.png` — Monthly performance across 6 years
+- `r_distribution.png` — Trade outcome distribution
+- `US30_Trade_Log.xlsx` — Sanitized trade log (697 trades, direction, outcome, R result, cumulative)
 
 ---
 
@@ -81,7 +124,7 @@ Key risk principles:
 
 A few points worth stating openly:
 
-- **Win rate is intentionally low (36%).** The edge comes from R:R asymmetry, not from win frequency. This requires discipline through losing streaks — psychologically demanding even on a fully mechanical system.
+- **Win rate is intentionally low (~36%).** The edge comes from R:R asymmetry, not from win frequency. This requires discipline through losing streaks — psychologically demanding even on a fully mechanical system.
 - **Single-instrument focus.** The strategy is calibrated for US30 microstructure. Transferability to other indices (NDX, SPX, DAX) would require dedicated re-validation.
 - **No regime-switching logic.** The system relies on robustness across regimes rather than active adaptation. This is intentional but caps the upside in trending environments.
 - **Execution assumptions.** Backtest assumes realistic spreads and slippage, but live performance will always differ marginally from simulated results.
